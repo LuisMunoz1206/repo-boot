@@ -24,20 +24,17 @@ public class FollowController {
         this.followService = followService;
     }
 
-
-    //Endpoint para Seguir a un usuario
     @PostMapping("/follow")
     public ResponseEntity<?> followUser(@RequestBody FollowersDTO followersDTO) {
-        //implementacion de un log para verificar la respuesta
         logger.info("Received follow request: {}", followersDTO);
         return new ResponseEntity<>(followService.followUser(followersDTO), HttpStatus.OK);
     }
 
     @PostMapping("/unfollow")
-public ResponseEntity<?> unfollowUser(@RequestBody FollowersDTO followersDTO) {
-    String message = followService.unfollowUser(followersDTO);
-    return new ResponseEntity<>(message, HttpStatus.OK);
-}
+    public ResponseEntity<?> unfollowUser(@RequestBody FollowersDTO followersDTO) {
+        String message = followService.unfollowUser(followersDTO);
+        return new ResponseEntity<>(message, HttpStatus.OK);
+    }
 
     @GetMapping("/followers/{userId}")
     public ResponseEntity<?> getFollowers(@PathVariable Long userId) {
